@@ -1,0 +1,55 @@
+#welcome-page {
+  height: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+
+  img.logo {
+    width: 200px;
+    height: 200px;
+  }
+
+  h1 {
+    width: 100%;
+    text-align: center;
+  }
+
+  .flex-br {
+    height: 10px;
+  }
+
+  .button {
+    width: 100px;
+  }
+
+  #dl-location {
+    display: none;
+    margin-bottom: 20px;
+  }
+
+  #dl-loc-box {
+    margin-bottom: 20px;
+    width: 350px;
+  }
+
+  #installation-directory-display .text-box {
+    margin-bottom: 15px;
+    width: 600px;
+  }
+
+  img.patreon-button {
+    display: block;
+    height: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+    transition: .2s;
+    margin-right: 8px;
+
+    &:hover {
+      box-shadow: 2px 5px 15px 0px rgba(0,0,0,0.5);
+      transform: scale(1.03);
+    }
+  }
+}

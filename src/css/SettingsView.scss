@@ -1,0 +1,54 @@
+#settings-view {
+  padding: 0 50px;
+  overflow: scroll;
+  height: calc(100% + 10px);
+
+  h1 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 32pt;
+  }
+
+  h3 {
+    margin: 0;
+  }
+  
+  ul {
+    margin: 0;
+    list-style: none;
+    padding-left: 20px;
+
+    li {
+      margin: 0;
+    }
+  }
+
+  th {
+    font-weight: 400;
+    margin-bottom: 5px;
+  }
+
+  #dl-location, #theme-image-path {
+    display: none;
+    margin-bottom: 20px;
+  }
+
+  #dl-loc-box {
+    margin-bottom: 20px;
+    width: 350px;
+  }
+
+  #installation-directory-display .text-box {
+    margin-bottom: 15px;
+    width: 600px;
+  }
+
+  #auto-refresh-interval {
+    width: 50px;
+    border-radius: 5px;
+    padding: 5px;
+    border: none;
+    outline: none;
+    background: #EEEEEE;
+  }
+}

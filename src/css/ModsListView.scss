@@ -1,0 +1,75 @@
+@import './StyleConstants';
+
+#mod-list {
+  height: 100%;
+
+  h1 {
+    font-size: 28pt;
+    margin: 10px 15px;
+    margin-bottom: 15px;
+  }
+
+  table {
+    display: block;
+    width: 100%;
+    height: calc(100% - 100px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  th, td, span {
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  tr {
+    cursor: pointer;
+  }
+
+  th span {
+    position: absolute;
+    top: 54px;
+    width: 100%;
+    display: block;
+    color: $beatdrop-blue;
+    background: white;
+    padding: 5px !important;
+    margin-top: 65px;
+    
+    font-weight: 400;
+    letter-spacing: 1px;
+    font-weight: 700;
+  }
+
+  tbody td {
+      padding: 5px;
+    }
+
+  .installing-mod {
+    width: 25px;
+    height: 25px;
+    background: url('../assets/loading.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+.theme-dark, .theme-hc {
+  #mod-list .installing-mod {
+    background: url('../assets/dark/loading.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+.theme-dark #mod-list th span {
+  color: $theme-dark-accent-color;
+  background: $theme-dark-background-color;
+}
+
+.theme-hc #mod-list th span {
+  color: $theme-hc-accent-color;
+  background: $theme-hc-background-color;
+}

@@ -1,0 +1,629 @@
+@import './StyleConstants';
+@import './Animations';
+
+#sidebar {
+  width: 195px;
+  background-color: $theme-light-sidebar-background-color;
+  padding: 15px;
+  overflow: hidden;
+  transition: .3s ease-out;
+
+  .resize-sidebar {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-image: url('../assets/sidebar-collapse.png');
+    background-size: 30px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+
+    &:hover {
+      background-image: url('../assets/sidebar-collapse-filled.png');
+    }
+  }
+
+  .buttons-bottom {
+    position: absolute;
+    bottom: 15px;
+    width: inherit;
+
+    div {
+      width: 100%;
+      overflow: hidden;
+      height: 30px;
+      cursor: pointer;
+      padding-right: 5px;
+      padding-top: 5px;
+      display: flex;
+      align-items: center;
+
+      &:before {
+        content: '';
+        display: inline-block;
+        height: 25px;
+        width: 25px;
+        overflow: hidden;
+        margin-right: 10px;
+        background-size: 25px 25px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        flex-shrink: 0;
+      }
+
+      &.open {
+        font-weight: bold;
+        color: $beatdrop-blue;
+      }
+    }
+
+    #settings-button {
+      &:before {
+        background-image: url(../assets/settings.png);
+      }
+    
+      &:hover, &.open {
+        &::before {
+          background-image: url(../assets/settings-filled.png);
+        }
+      }
+    
+      &.open::before {
+        animation: spin 10s linear forwards infinite;
+      }
+    }
+
+    #search-button {
+      &::before {
+        background-image: url(../assets/search.png);
+      }
+
+      &:hover, &.open {
+        &::before {
+          background-image: url(../assets/search-filled.png);
+        }
+      }
+    
+      &.open::before {
+        animation: search-button-anim 5s forwards infinite;
+      }
+    }
+
+    #queue-button {
+      &::before {
+        background-image: url(../assets/queue.png);
+      }
+
+      &:hover, &.open {
+        &::before {
+          background-image: url(../assets/queue-filled.png);
+        }
+        
+      }
+    
+      &.open::before {
+        animation: queue-button-anim 3s forwards infinite;
+      }
+    
+      &.notify::before {
+        animation: bounce 1s ease 0s 1 forwards;
+      }
+    }
+
+    #donate-button {
+      &::before {
+        background-image: url(../assets/heart.png);
+      }
+    
+      &:hover, &.open {
+        &::before {
+          background-image: url(../assets/heart-filled.png);
+        }
+      }
+    
+      &.open::before {
+        animation: heartbeat 1s alternate forwards infinite;
+      }
+    }
+  }
+
+  h5 {
+    opacity: 0.7;
+    text-decoration: none;
+    margin-bottom: -15px;
+    margin-top: 10px;
+  }
+
+  &.collapsed {
+    width: 30px;
+
+    .resize-sidebar {
+      background-image: url('../assets/sidebar-expand.png');
+
+      &:hover {
+        background-image: url('../assets/sidebar-expand-filled.png');
+      }
+    }
+
+    .section-content {
+      max-height: 0 !important;
+      transition: .3s !important;
+    }
+  }
+
+  .section {
+    font-size: 12pt;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+
+    &.selected {
+      color: $theme-light-accent-color;
+      font-weight: 900;
+    }
+
+    &:hover {
+      font-weight: 900
+    }
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      flex-shrink: 0;
+      margin-right: 10px;
+      background-size: 25px;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    &.section-songs {
+      &::before {
+        background-image: url('../assets/song.png');
+      }
+
+      &:hover, &.selected {
+        &::before {
+          background-image: url('../assets/song-filled.png');
+        }
+      }
+    }
+
+    &.section-mods {
+      &::before {
+        background-image: url('../assets/mod.png');
+      }
+
+      &:hover, &.selected {
+        &::before {
+          background-image: url('../assets/mod-filled.png');
+        }
+      }
+    }
+
+    &.section-sabers {
+      &::before {
+        background-image: url('../assets/saber.png');
+      }
+
+      &:hover, &.selected {
+        &::before {
+          background-image: url('../assets/saber-filled.png');
+        }
+      }
+    }
+
+    &.section-platforms {
+      &::before {
+        background-image: url('../assets/platform.png');
+      }
+
+      &:hover, &.selected {
+        &::before {
+          background-image: url('../assets/platform-filled.png');
+        }
+      }
+    }
+
+    &.section-avatars {
+      &::before {
+        background-image: url('../assets/avatar.png');
+      }
+
+      &:hover, &.selected {
+        &::before {
+          background-image: url('../assets/avatar-filled.png');
+        }
+      }
+    }
+  }
+
+  .section-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: .2s;
+
+    &.selected {
+      transition: .5s;
+      max-height: 400px;
+    }
+  }
+
+  ul {
+    list-style: none;
+    transform: translateX(-25px);
+    width: 100vw;
+
+    li {
+      margin: 5px 0;
+      cursor: pointer;
+      
+      &::before {
+        content: '';
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        transform: translate(-5px, 7px);
+        background-size: 25px;
+        background-repeat: no-repeat;
+      }
+
+      &:hover {
+        font-weight: bold;
+      }
+
+      &.fetch-new-songs {
+        &::before {
+          background-image: url('../assets/new.png');
+        }
+      }
+
+      &.fetch-local-playlists {
+        &::before {
+          background-image: url('../assets/playlist.png');
+        }
+      }
+
+      &.fetch-top-finished {
+        &::before {
+          background-image: url('../assets/finish.png');
+        }
+      }
+
+      &.fetch-top-downloaded {
+        &::before {
+          background-image: url('../assets/download-li-filled.png');
+        }
+      }
+
+      &.fetch-local-songs {
+        &::before {
+          background-image: url('../assets/song-filled.png');
+        }
+      }
+
+      &.modsaber-all, &.library-all-mods {
+        &::before {
+          background-image: url('../assets/mod-filled.png');
+        }
+      }
+
+      &.modsaber-recommended {
+        &::before {
+          background-image: url('../assets/star-filled.png');
+        }
+      }
+
+      &.modsaber-categories {
+        &::before {
+          background-image: url('../assets/categories.png');
+        }
+      }
+
+      &.library-activated-mods {
+        &::before {
+          background-image: url('../assets/activated.png');
+        }
+      }
+
+      &.library-conflicted-mods {
+        &::before {
+          background-image: url('../assets/pack.png');
+        }
+      }
+
+      &.selected {
+        font-weight: bold;
+        color: $beatdrop-blue;
+      }
+
+      &.disabled {
+        opacity: 0.25;
+        cursor: not-allowed;
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+.theme-dark, .theme-hc {
+  #sidebar {
+    background-color: $theme-light-sidebar-background-color;
+    color: $theme-dark-text-color;
+
+    .buttons-bottom {
+      #settings-button {
+        &::before {
+          background-image: url(../assets/dark/settings.png);
+        }
+        
+    
+        &:hover, &.open {
+          &::before {
+            background-image: url(../assets/dark/settings-filled.png);
+          }
+        }
+      }
+
+      #search-button {
+        &::before {
+          background-image: url(../assets/dark/search.png);
+        }
+        
+    
+        &:hover, &.open {
+          &::before {
+            background-image: url(../assets/dark/search-filled.png);
+          }
+        }
+      }
+
+      #queue-button {
+        &::before {
+          background-image: url(../assets/dark/queue.png);
+        }
+    
+        &:hover, &.open {
+          &::before {
+            background-image: url(../assets/dark/queue-filled.png);
+          }
+        }
+    
+        &.open::before {
+          animation: queue-button-anim-dark 3s forwards infinite;
+        }
+      }
+
+      #donate-button {
+        &::before {
+          background-image: url(../assets/dark/heart.png);
+        }
+        
+    
+        &:hover, &.open {
+          &::before {
+            background-image: url(../assets/heart-filled.png);
+          }
+        }
+      }
+    }
+  
+    .section {
+      &.section-songs {
+        &::before {
+          background-image: url('../assets/dark/song.png');
+        }
+  
+        &:hover, &.selected {
+          &::before {
+            background-image: url('../assets/dark/song-filled.png');
+          }
+        }
+      }
+  
+      &.section-mods {
+        &::before {
+          background-image: url('../assets/dark/mod.png');
+        }
+  
+        &:hover, &.selected {
+          &::before {
+            background-image: url('../assets/dark/mod-filled.png');
+          }
+        }
+      }
+  
+      &.section-sabers {
+        &::before {
+          background-image: url('../assets/dark/saber.png');
+        }
+  
+        &:hover, &.selected {
+          &::before {
+            background-image: url('../assets/dark/saber-filled.png');
+          }
+        }
+      }
+  
+      &.section-platforms {
+        &::before {
+          background-image: url('../assets/dark/platform.png');
+        }
+  
+        &:hover, &.selected {
+          &::before {
+            background-image: url('../assets/dark/platform-filled.png');
+          }
+        }
+      }
+  
+      &.section-avatars {
+        &::before {
+          background-image: url('../assets/dark/avatar.png');
+        }
+  
+        &:hover, &.selected {
+          &::before {
+            background-image: url('../assets/dark/avatar-filled.png');
+          }
+        }
+      }
+    }
+
+    ul li {
+      &.fetch-new-songs {
+        &::before {
+          background-image: url('../assets/dark/new.png');
+        }
+      }
+
+      &.fetch-local-playlists {
+        &::before {
+          background-image: url('../assets/dark/playlist.png');
+        }
+      }
+
+      &.fetch-top-finished {
+        &::before {
+          background-image: url('../assets/dark/finish.png');
+        }
+      }
+
+      &.fetch-top-downloaded {
+        &::before {
+          //TODO Fix asset names
+          background-image: url('../assets/download-filled.png');
+        }
+      }
+
+      &.fetch-local-songs {
+        &::before {
+          background-image: url('../assets/dark/song-filled.png');
+        }
+      }
+
+      &.modsaber-all, &.library-all-mods {
+        &::before {
+          background-image: url('../assets/dark/mod-filled.png');
+        }
+      }
+
+      &.modsaber-recommended {
+        &::before {
+          background-image: url('../assets/dark/star-filled.png');
+        }
+      }
+
+      &.modsaber-categories {
+        &::before {
+          background-image: url('../assets/dark/categories.png');
+        }
+      }
+
+      &.library-activated-mods {
+        &::before {
+          background-image: url('../assets/dark/activated.png');
+        }
+      }
+
+      &.library-conflicted-mods {
+        &::before {
+          background-image: url('../assets/dark/pack.png');
+        }
+      }
+    }
+
+    .resize-sidebar {
+      background-image: url('../assets/dark/sidebar-collapse.png');
+  
+      &:hover {
+        background-image: url('../assets/dark/sidebar-collapse-filled.png');
+      }
+    }
+
+    &.collapsed {
+      .resize-sidebar {
+        background-image: url('../assets/dark/sidebar-expand.png');
+
+        &:hover {
+          background-image: url('../assets/dark/sidebar-expand-filled.png');
+        }
+      }
+    }
+  }
+}
+
+.theme-hc {
+  #sidebar {
+    background-color: $theme-hc-sidebar-background-color;
+    border-right: 1px solid white;
+    width: 194px;
+
+    &.collapsed {
+      width: 29px;
+    }
+
+    .section {
+      &.selected {
+        color: $theme-hc-accent-color;
+      }
+    }
+
+    ul li {
+      &.selected {
+        color: $theme-hc-accent-color;
+      }
+    }
+  }
+}
+
+@keyframes search-button-anim {
+  20% {
+    transform: translate(3px, -3px);
+  }
+  40% {
+    transform: translate(-3px, 3px);
+  }
+  60% {
+    transform: translate(-3px, -3px);
+  }
+  80% {
+    transform:  translate(3px, 3px);
+  }
+}
+
+@keyframes heartbeat {
+  70% {
+    transform: scaleX(1) scaleY(1);
+  }
+  100% {
+    transform: scaleX(1.1) scaleY(1.2);
+  }
+}
+
+@keyframes queue-button-anim {
+  30% {
+    background-image: url(../assets/queue-filled-0.png);
+  }
+  60% {
+    background-image: url(../assets/queue-filled-1.png);
+  }
+  90% {
+    background-image: url(../assets/queue-filled-2.png);
+  }
+}
+
+@keyframes queue-button-anim-dark {
+  30% {
+    background-image: url(../assets/dark/queue-filled-0.png);
+  }
+  60% {
+    background-image: url(../assets/dark/queue-filled-1.png);
+  }
+  90% {
+    background-image: url(../assets/dark/queue-filled-2.png);
+  }
+}

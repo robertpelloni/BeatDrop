@@ -1,0 +1,34 @@
+.scanning-text {
+  text-align: center;
+
+  &:first-child::before {
+    content: "";
+    display: block;
+    position: relative;
+    left: calc(50% - 50px);
+    top: 20px;
+    width: 100px;
+    height: 100px;
+    padding: 30px 0;
+    margin-top: -20px;
+    background: url(../assets/update.png);
+    background-repeat: no-repeat;
+    transition: .5s;
+  }
+}
+
+h5.scanning-text {
+  margin: 10px 0;
+}
+
+.scanning-text.theme-dark, .scanning-text.theme-hc {
+  &::before {
+    background: url(../assets/dark/update.png);
+    background-repeat: no-repeat;
+  }
+}
+
+.song-scanning-progress {
+  margin: 0 10%;
+  margin-top: 40px;
+}

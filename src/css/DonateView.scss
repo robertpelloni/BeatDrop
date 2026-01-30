@@ -1,0 +1,65 @@
+#donate-view {
+  height: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+
+  img.heart {
+    margin-top: -30px;
+    width: 150px;
+    height: 150px;
+  }
+
+  img.patreon-button {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    height: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+
+    &:hover {
+      box-shadow: 2px 5px 15px 0px rgba(0,0,0,0.5);
+      animation: patreon-wiggle .1s alternate infinite linear;
+    }
+  }
+
+  h1, h3 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  p {
+    width: 100%;
+    margin: 20px 20%;
+    text-align: center;
+  }
+
+  b {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    padding-right: 10px;
+  }
+
+  .flex-br {
+    height: 10px;
+  }
+
+  .button {
+    width: 130px;
+  }
+}
+
+@keyframes patreon-wiggle {
+  from {
+    transform: rotate(-2deg) scale(1.05) translatey(-3px);
+  }
+  to {
+    transform: rotate(2deg) scale(1.05) translatey(-3px);
+  }
+}

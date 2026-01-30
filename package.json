@@ -1,0 +1,89 @@
+{
+  "name": "beatdrop",
+  "description": "A desktop app for downloading Beat Saber songs.",
+  "author": "Nathaniel Johns (StarGazer1258)",
+  "version": "2.6.2",
+  "private": false,
+  "license": "CC-BY-NC-SA-4.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/StarGazer1258/BeatDrop.git"
+  },
+  "dependencies": {
+    "adm-zip": "^0.4.13",
+    "electron-is-dev": "^0.3.0",
+    "electron-log": "^2.2.17",
+    "electron-updater": "4.0.5",
+    "get-image-colors": "^1.8.1",
+    "md5": "^2.2.1",
+    "node-sass": "^4.12.0",
+    "original-fs": "^1.0.0",
+    "react": "16.4.0",
+    "react-contextmenu": "^2.10.0",
+    "react-dom": "16.4.0",
+    "react-linkify": "^0.2.2",
+    "react-redux": "^6.0.0",
+    "redux": "^4.0.1",
+    "redux-persist": "^5.10.0",
+    "redux-thunk": "^2.3.0",
+    "remarkable": "^1.7.1",
+    "rimraf": "^2.6.2",
+    "semver": "^6.3.0",
+    "sortablejs": "^1.8.0-rc1",
+    "walker": "^1.0.7"
+  },
+  "devDependencies": {
+    "concurrently": "3.5.1",
+    "cross-env": "5.1.6",
+    "electron": "3.0.10",
+    "electron-builder": "20.38.1",
+    "electron-devtools-installer": "^2.2.4",
+    "prettier": "^1.4.4",
+    "react-scripts": "2.1.2",
+    "wait-on": "2.1.0"
+  },
+  "main": "public/electron.js",
+  "homepage": "./",
+  "scripts": {
+    "test": "jest",
+    "build": "react-scripts build && electron-builder --win",
+    "publish": "react-scripts build && electron-builder --win -p always",
+    "build-portable": "react-scripts build && electron-builder --win portable",
+    "start": "concurrently \"cross-env BROWSER=none react-scripts start\" \"wait-on http://localhost:3000 && electron .\""
+  },
+  "build": {
+    "generateUpdatesFilesForAllChannels": true,
+    "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "BeatDrop ${version} Setup.${ext}",
+      "oneClick": false,
+      "perMachine": false,
+      "shortcutName": "BeatDrop"
+    },
+    "directories": {
+      "buildResources": "resources"
+    },
+    "win": {
+      "publish": {
+        "provider": "github"
+      },
+      "protocols": {
+        "name": "BeatDrop Protocol",
+        "schemes": [
+          "beatdrop"
+        ]
+      }
+    },
+    "fileAssociations": [
+      {
+        "ext": "bplist",
+        "name": "Playlist",
+        "description": "Beat Saber Playlist",
+        "icon": "resources/bplist.ico"
+      }
+    ]
+  },
+  "browserslist": [
+    "electron >= 3.0.10"
+  ]
+}
